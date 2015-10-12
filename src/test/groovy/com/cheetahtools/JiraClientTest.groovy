@@ -17,17 +17,20 @@ class JiraClientTest extends Specification {
     def  "make sure complete path is traversed"() {
         given:
             int estimate = 3
-            1 * mockBugsIssueType.getIssues() >> ["1","2"]
-            1 * mockStoriesIssueType.getIssues() >> ["3","4","5"]
+            def mockBugsIssueTypeResult = ["1","2"]
+            def mockStoriesIssueTypeResult = ["3","4","5"]
+            1 * mockBugsIssueType.getIssues() >>  mockBugsIssueTypeResult
+            1 * mockStoriesIssueType.getIssues() >>  mockStoriesIssueTypeResult
             1 * mockJiraApiTool.getType("bugs") >> mockBugsIssueType
             1 * mockJiraApiTool.getType("stories") >> mockStoriesIssueType
              5 * mockJiraApiTool.getIssue(_ as String) >> mockIssue
              5 * mockIssue.getEstimate() >> estimate
 
         when:
-           int sum = client.getEstimates("bugs,stories")
+           Map<String, Integer> result = client.getEstimates("bugs,stories")
 
         then:
-            sum == 5 * estimate
+            result == ["bugs": (mockBugsIssueTypeResult.size() * estimate),
+                             "stories": (mockStoriesIssueTypeResult.size() * estimate)]
     }
 }

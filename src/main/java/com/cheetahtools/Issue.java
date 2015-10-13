@@ -51,14 +51,4 @@ public class Issue {
     public void setEstimate(int estimate) {
         this.estimate = estimate;
     }
-
-    public static void main(String[] args)  throws Exception{
-        JSONParser parser = new JSONParser();
-        String data = new String(Files.readAllBytes(Paths.get("C:\\Users\\surendra.appalaneni\\Downloads\\quests\\api-exercise\\sample API responses\\Issue-1.json"))) ;
-        Issue issue = new Issue( (JSONObject) parser.parse(data));
-        System.out.println(issue.getId());
-        System.out.println(issue.getIssuetype());
-        System.out.println(issue.getDescription());
-        System.out.println(issue.getEstimate());
-    }
 }

@@ -1,5 +1,8 @@
 package com.cheetahtools;
 
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -7,30 +10,25 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import  com.cheetahtools.exceptions.*;
+import org.springframework.stereotype.Component;
 
+@Component
 public class JiraApiClient {
 
-    @Autowired
-    @Qualifier("FileJiraApiTool")
    private AbstractJiraApiTool  jiraTool;
 
     public JiraApiClient() {
-        if (jiraTool == null) {
-            jiraTool = new FileJiraApiTool();
-        }
+            jiraTool = new WebJiraApiTool();
     }
-    Map<String, Integer> getEstimates(String issueTypes) throws InvalidDataException {
-
+    public Map<String, Integer> getEstimates(String issueTypes) throws InvalidDataException {
         List<String> issuesTypesInput = Arrays.asList(issueTypes.split(","));
-        Map<String, Integer> result = issuesTypesInput.stream()
+        Map<String, Integer> result = issuesTypesInput.stream().parallel()
                                                            .map(this::getEstimate)
                                                            .collect(HashMap::new, Map::putAll, Map::putAll);
-       System.out.println("Total estimate for [" + issueTypes + "] : ");
-        result.forEach((key,value) -> System.out.println(key + " : " + value));
         return result;
     }
 
-    Map<String, Integer> getEstimate(String type) throws InvalidDataException {
+    private Map<String, Integer> getEstimate(String type) throws InvalidDataException {
         Map<String, Integer> result = new HashMap<String, Integer>();
         int sum = jiraTool.getType(type).getIssues().stream()
                                        .map(jiraTool::getIssue)
@@ -42,10 +40,21 @@ public class JiraApiClient {
 
     public static void main(String[] args) {
         JiraApiClient client = new JiraApiClient();
+        String input = "bugs,stories";
+        Map<String, Integer> result = client.getEstimates(input);
+        System.out.println("Total estimate for [" + input + "] : ");
+        result.forEach((key,value) -> System.out.println(key + " : " + value));
+        System.out.println("");
 
-        client.getEstimates("bugs,stories");
-        client.getEstimates("bugs");
-        client.getEstimates("stories");
-        client.getEstimates("stories,bugs");
+/*      WebJiraApiTool webClient = new WebJiraApiTool();
+        List<String> types = Arrays.asList("bugs,stories".split(","));
+        types.forEach(type -> {
+        int sum =  webClient.getType(type).getIssues().stream()
+                .map(webClient::getIssue)
+                .mapToInt(i -> i.getEstimate())
+                .sum()   ;
+
+        System.out.println("total estimate : " + sum);
+        });*/
     }
 }

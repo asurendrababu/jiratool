@@ -1,5 +1,6 @@
 package com.cheetahtools
 
+import com.cheetahtools.exceptions.InvalidDataException
 import spock.lang.Specification
 
 
@@ -14,7 +15,7 @@ class JiraClientTest extends Specification {
     def setup(){
         client.jiraTool = mockJiraApiTool
     }
-    def  "make sure complete path is traversed"() {
+    def  "getEstimates() should traverse complete path (all issueTypes and all issues)"() {
         given:
             int estimate = 3
             def mockBugsIssueTypeResult = ["1","2"]
@@ -32,5 +33,31 @@ class JiraClientTest extends Specification {
         then:
             result == ["bugs": (mockBugsIssueTypeResult.size() * estimate),
                              "stories": (mockStoriesIssueTypeResult.size() * estimate)]
+    }
+
+    def  "getEstimates() should throw exception, when invalid issueType is specified"() {
+        given:
+        1 * mockJiraApiTool.getType("invalidIssueType") >> { throw new InvalidDataException("Invalid issueType") }
+
+        when:
+        client.getEstimates("invalidIssueType")
+
+        then:
+       thrown(InvalidDataException.class)
+    }
+
+    def  "getEstimates() should throw exception, when invalid issue  is found"() {
+        given:
+        IssueType mockTypeWithInvalidIssue = Mock()
+        def mockInvalidIssueResult = ["10","20"]
+        1 * mockTypeWithInvalidIssue.getIssues() >>  mockInvalidIssueResult
+        mockJiraApiTool.getType("typeWithInvalidIssue") >> mockTypeWithInvalidIssue
+        mockJiraApiTool.getIssue(_ as String) >>  { throw new InvalidDataException("Invalid issueType")}
+
+        when:
+        client.getEstimates("typeWithInvalidIssue")
+
+        then:
+        thrown(InvalidDataException.class)
     }
 }

@@ -3,12 +3,13 @@ Description at /src/main/resources/README.md
 
 sample calls:
 
-http://localhost:8010/estimates?types=bugs,stories
+http://localhost:8010/estimates?types=bugs,stories ,spikes
 
   {
   
-      "bugs": 10,
-      "stories": 4
+    "bugs": 10,
+    "stories": 4,
+    "spikes": 17
   
   }
   

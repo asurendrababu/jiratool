@@ -19,7 +19,6 @@ public class WebJiraApiTool implements AbstractJiraApiTool {
     public IssueType getType(String subType) throws InvalidDataException {
         try {
             String output = getData(basePath + "issuetypes/" + subType);
-            System.out.println(output);
             IssueType issueType = new IssueType((JSONObject) parser.parse(output));
             return issueType;
         }

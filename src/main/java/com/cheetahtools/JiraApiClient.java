@@ -22,7 +22,7 @@ public class JiraApiClient {
     }
     public Map<String, Integer> getEstimates(String issueTypes) throws InvalidDataException {
         List<String> issuesTypesInput = Arrays.asList(issueTypes.split(","));
-        Map<String, Integer> result = issuesTypesInput.stream().parallel()
+        Map<String, Integer> result = issuesTypesInput.stream()
                                                            .map(this::getEstimate)
                                                            .collect(HashMap::new, Map::putAll, Map::putAll);
         return result;

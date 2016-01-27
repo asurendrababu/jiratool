@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.cheetahtools</groupId>
+    <groupId>com.github.asurendrababu</groupId>
     <artifactId>jiratool</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -13,6 +13,12 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <org.springframework.version>4.1.6.RELEASE</org.springframework.version>
     </properties>
+
+    <scm>
+        <url>scm:git:git@github.com:asurendrababu/jiratool.git</url>
+        <connection>scm:git:git://github.com/asurendrababu/jiratool.git</connection>
+        <developerConnection>scm:git:git@github.com:asurendrababu/jiratool.git</developerConnection>
+    </scm>
 
     <repositories>
         <repository>
@@ -200,6 +206,7 @@ this if you use Spring Bean APIs (org.springframework.beans.*) -->
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
+                <version>8.1.16.v20140903</version>
                 <configuration>
                     <webApp>
                         <contextPath>/</contextPath>

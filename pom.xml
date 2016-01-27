@@ -19,6 +19,9 @@
     <developers>
         <developer>
             <name>Surendra</name>
+            <email>surendra@myorg.com</email>
+            <organization>surendraOrg</organization>
+            <organizationUrl>http://www.surendraorg.org</organizationUrl>
         </developer>
     </developers>
     <properties>

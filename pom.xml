@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <name>jiratool</name>
+    <name>${project.groupId}:${project.artifactId}</name>
     <description>This is a sample rest application</description>
     <url>https://github.com/asurendrababu/jiratool</url>
     <groupId>com.github.asurendrababu</groupId>
@@ -32,7 +32,7 @@
 
     <scm>
         <url>scm:git:git@github.com:asurendrababu/jiratool.git</url>
-        <connection>scm:git:git://github.com/asurendrababu/jiratool.git</connection>
+        <connection>scm:git:git://github.com:asurendrababu/jiratool.git</connection>
         <developerConnection>scm:git:git@github.com:asurendrababu/jiratool.git</developerConnection>
       <tag>HEAD</tag>
   </scm>

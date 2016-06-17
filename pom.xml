@@ -23,7 +23,7 @@
     </distributionManagement>
 
     <scm>
-        <developerConnection>scm:git|ssh://git@github.com/asurendrababu/jiratool</developerConnection>
+        <developerConnection>scm:git|git@github.com:asurendrababu/jiratool.git</developerConnection>
     </scm>
     <repositories>
         <repository>

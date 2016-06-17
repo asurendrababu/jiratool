@@ -4,6 +4,7 @@ import org.apache.commons.io.IOUtils;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -16,18 +17,27 @@ import java.nio.charset.Charset;
 
 
 @Component("issueResource")
-@Path("issues")
 @Produces({MediaType.APPLICATION_JSON })
+@Path("/issues")
 public class IssueResource {
 
     public String basePath = "/sampleResponses/";
     private JSONParser parser = new JSONParser();
 
     @GET
-    @Path("/{issueId}")
-    public Response getIssue(@PathParam("issueId") String issueId) throws Exception {
+    @Path("{issueId}")
+    public Response getIssue(@PathParam("issueId") String issueId, @PathParam("issueType") String issueType) throws Exception {
         try {
-            String info = ((JSONObject) parser.parse(new InputStreamReader(getClass().getResourceAsStream(basePath + "issues/issue-" + issueId + ".json")))).toJSONString();
+            JSONObject dataObject = (JSONObject) parser.parse(new InputStreamReader(getClass().getResourceAsStream(basePath + "issues/issue-" + issueId + ".json")));
+
+            if (StringUtils.isEmpty(issueType)) {
+                dataObject.put("description","new:No issueType data available");
+            }
+            else {
+                dataObject.put("description","new:issueType data available :" + issueType);
+            }
+            String info = dataObject.toJSONString();
+
             return Response.status(Response.Status.OK)
                     .entity(info)
                     .build();

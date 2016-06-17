@@ -1,5 +1,6 @@
 package com.cheetahtools;
 
+import static com.cheetahtools.WebJiraApiTool.ArtifactAction.*;
 import com.cheetahtools.exceptions.InvalidDataException;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
@@ -9,12 +10,25 @@ import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Component;
 
 import java.io.InputStreamReader;
+import java.text.MessageFormat;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Component(value = "webJiraApiTool")
 public class WebJiraApiTool implements AbstractJiraApiTool {
     public String basePath = "http://localhost:8010/";
     private JSONParser parser = new JSONParser();
     private Client webClient = Client.create();
+
+    public static enum ArtifactAction
+    {
+        DEPLOY, START, RELEASE, STOP;
+
+        public boolean in(ArtifactAction... artifactActions)
+        {
+            return (Arrays.asList(artifactActions).stream().anyMatch(action -> action == this));
+        }
+    };
 
     public IssueType getType(String subType) throws InvalidDataException {
         try {
@@ -46,4 +60,5 @@ public class WebJiraApiTool implements AbstractJiraApiTool {
             }
             return response.getEntity(String.class);
     }
+
 }

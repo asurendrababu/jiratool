@@ -3,6 +3,7 @@ package com.cheetahtools.resources;
 import org.apache.commons.io.IOUtils;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.GET;
@@ -23,6 +24,9 @@ public class IssueTypeResource {
     public String basePath = "/sampleResponses/";
     private JSONParser parser = new JSONParser();
 
+    @Autowired
+    IssueResource issueResource;
+
     @GET
     @Path("/{issueType}")
     public Response getIssueType(@PathParam("issueType") String issueType) throws Exception {
@@ -35,6 +39,12 @@ public class IssueTypeResource {
         catch(Exception ex) {
             return  Response.status(Response.Status.NOT_FOUND).entity("{\"error\": \"issue type not found\"}").build();
         }
+    }
+
+
+    @Path("/{issueType}/issues")
+    public IssueResource getIsssueTypesIssuesResource() throws Exception {
+        return issueResource;
     }
 
 }

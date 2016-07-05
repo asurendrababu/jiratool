@@ -24,7 +24,6 @@
         <connection>https://github.com/asurendrababu/jiratool</connection>
         <developerConnection>scm:git|git@github.com:asurendrababu/jiratool.git</developerConnection>
         <url>https://github.com/asurendrababu/jiratool</url>
-      <tag>1.0.0.1004</tag>
   </scm>
     <repositories>
         <repository>

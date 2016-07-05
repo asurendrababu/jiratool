@@ -52,4 +52,5 @@ com.servicemesh.core.messaging,
  org.xml.sax.ext,
  org.xml.sax.helpers,
  org.xml.sax,
+ org.xml.sax.ext,
  org.xml.sax.ext

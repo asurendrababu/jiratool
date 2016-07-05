@@ -50,4 +50,6 @@ com.servicemesh.core.messaging,
  org.w3c.dom,
  org.xml.sax,
  org.xml.sax.ext,
- org.xml.sax.helpers
+ org.xml.sax.helpers,
+ org.xml.sax,
+ org.xml.sax.ext

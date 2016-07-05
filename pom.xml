@@ -24,7 +24,7 @@
         <connection>https://github.com/asurendrababu/jiratool</connection>
         <developerConnection>scm:git|git@github.com:asurendrababu/jiratool.git</developerConnection>
         <url>https://github.com/asurendrababu/jiratool</url>
-  </scm>
+    </scm>
     <repositories>
         <repository>
             <id>jboss-public-repository-group</id>

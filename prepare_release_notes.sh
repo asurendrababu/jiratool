@@ -54,9 +54,10 @@ if $NO_ARTIFACTS
 then
 echo "Artifacts can be found at: " >> release_notes.txt
 echo "........................." >> release_notes.txt
-echo "http://dl.bintray.com/asurendrababu/maven/com/cheetahtools/${artifactid}/${VERSION_NO}/${artifactid}-${VERSION_NO}.jar" >> release_notes.txt
-echo "http://dl.bintray.com/asurendrababu/maven/com/cheetahtools/${artifactid}/${VERSION_NO}/${artifactid}-${VERSION_NO}-sources.jar" >> release_notes.txt
-echo "http://dl.bintray.com/asurendrababu/maven/com/cheetahtools/${artifactid}/${VERSION_NO}/${artifactid}-${VERSION_NO}-javadoc.jar" >> release_notes.txt
+
+echo "https://bintray.com/csc/opensource/agility.platform-sdk/${VERSION_NO}#files" >> release_notes.txt
+#echo "http://dl.bintray.com/asurendrababu/maven/com/cheetahtools/${artifactid}/${VERSION_NO}/${artifactid}-${VERSION_NO}-sources.jar" >> release_notes.txt
+#echo "http://dl.bintray.com/asurendrababu/maven/com/cheetahtools/${artifactid}/${VERSION_NO}/${artifactid}-${VERSION_NO}-javadoc.jar" >> release_notes.txt
 fi
 
 git tag -f $VERSION_NO -F release_notes.txt

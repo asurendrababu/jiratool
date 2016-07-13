@@ -46,7 +46,7 @@ echo "APP_REVISON=${VERSION_NO}" > version.properties
 echo "CHANGES:" > release_notes.txt
 echo "=======" >> release_notes.txt
 
-git log $GIT_PREVIOUS_COMMIT..$GIT_COMMIT --pretty=format:'%s' | grep -v "\[maven-release-plugin\]" | grep -v "Merge pull request" >> release_notes.txt
+git log $GIT_PREVIOUS_SUCCESSFUL_COMMIT..$GIT_COMMIT --pretty=format:'%s' | grep -v "\[maven-release-plugin\]" | grep -v "Merge pull request" >> release_notes.txt
 echo " " >> release_notes.txt
 echo "........................." >> release_notes.txt
 

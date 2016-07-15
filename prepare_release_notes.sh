@@ -43,6 +43,10 @@ echo "APP_REVISON=${VERSION_NO}" > version.properties
 #echo "APP_REVISON=${VERSION_NO}" > project_sharing.properties
 #echo "RELEASEURL=${RELEASEURL}" >> project_sharing.properties
 
+echo "Preparing Release notes with changelog from following commit boundaries."
+echo "Prev Successful commit: $GIT_PREVIOUS_SUCCESSFUL_COMMIT"
+echo "Current commit: $GIT_COMMIT"
+
 echo "CHANGES:" > release_notes.txt
 echo "=======" >> release_notes.txt
 

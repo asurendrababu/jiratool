@@ -4,7 +4,7 @@
 
     <groupId>com.cheetahtools</groupId>
     <artifactId>jiratool</artifactId>
-    <version>1.1.0.RC.01-SNAPSHOT</version>
+    <version>1.1.0.RC.01</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -24,7 +24,7 @@
         <connection>https://github.com/asurendrababu/jiratool</connection>
         <developerConnection>scm:git|git@github.com:asurendrababu/jiratool.git</developerConnection>
         <url>https://github.com/asurendrababu/jiratool</url>
-      <tag>HEAD</tag>
+      <tag>1.1.0.RC.01</tag>
   </scm>
     <repositories>
         <repository>

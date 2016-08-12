@@ -202,6 +202,7 @@ this if you use Spring Bean APIs (org.springframework.beans.*) -->
     </dependencies>
 
     <build>
+	<finalName>${project.groupId}.${project.artifactId}-${project.version}</finalName>
 
         <resources>
             <resource>
@@ -213,6 +214,12 @@ this if you use Spring Bean APIs (org.springframework.beans.*) -->
             </resource>
         </resources>
         <plugins>
+	    <plugin>
+	      <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-help-plugin</artifactId>
+              <version>2.1.1</version>
+            </plugin>
+
             <!-- Configure Jetty path and system properties. -->
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>

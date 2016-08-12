@@ -270,6 +270,7 @@ this if you use Spring Bean APIs (org.springframework.beans.*) -->
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.5.3</version>
                 <configuration>
+                    <finalName>${project.groupId}.${project.artifactId}-${project.version}</finalName>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                 </configuration>
             </plugin>
